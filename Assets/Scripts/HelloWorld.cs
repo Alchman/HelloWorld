@@ -8,7 +8,7 @@ public class HelloWorld : MonoBehaviour
     void Start()
     {
         int playerHealth; //объявили переменную с именем и типом
-        int enemyHealth;
+        //int enemyHealth;
 
         //enemyHealth = playerHealth + 10 / 2;
         //playerHealth = 50;
@@ -34,7 +34,7 @@ public class HelloWorld : MonoBehaviour
 
         //print("is player alive: " + isAlive);
 
-        bool isAlive = false;
+        //bool isAlive = false;
         playerHealth = -10;
 
         if (playerHealth > 0)
