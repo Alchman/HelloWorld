@@ -5,8 +5,15 @@ using UnityEngine.UI;
 
 public class MagicNumbers : MonoBehaviour
 {
-    public Text title;
+    [Header("Colors")]
+    public Color colorForTitle;
 
+    [Header("UI Elements")]
+    [Tooltip("Текст для заголовка")] public Text title;
+    public Text gameText;
+    public Image titleImage;
+
+    [Header("Config")]
     public int min;
     public int max;
 
@@ -16,10 +23,27 @@ public class MagicNumbers : MonoBehaviour
     void Start()
     {
         title.text = "Magic Numbers";
+        //title.color = Color.red;
+        //title.fontSize = 10;
+        //title.resizeTextForBestFit = false;
+
+        titleImage.color = colorForTitle;
 
         print("Загадайте число от " + min + " до " + max);
         UpdateGuess();
 
+    }
+
+    public void Higher()
+    {
+        min = guess;
+        UpdateGuess();
+    }
+
+    public void Lower()
+    {
+        max = guess;
+        UpdateGuess();
     }
 
     // Update is called once per frame
@@ -27,17 +51,16 @@ public class MagicNumbers : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            min = guess;
-            UpdateGuess();
+            Higher();
         }
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            max = guess;
-            UpdateGuess();
+            Lower();
         }
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
         {
             print("the end");
+            gameText.text = "the end";
             Start();
         }
     }
@@ -45,6 +68,7 @@ public class MagicNumbers : MonoBehaviour
     void UpdateGuess()
     {
         guess = (min + max) / 2;
-        print("Ваше число: " + guess + "?");
+        //print("Ваше число: " + guess + "?");
+        gameText.text = "Ваше число: " + guess + "?";
     }
 }
